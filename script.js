@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const keyboardKeys = {
   Backquote: { ru: ['ё', 'Ё'], en: ['`', '~'] },
   Digit1: { ru: ['1', '!'], en: ['1', '!'] },
@@ -70,6 +71,7 @@ function getKeyboard() {
   document.body.append(wrapperKeyboard);
   const btn = Object.values(keyboardKeys);
   Object.values(btn).forEach((element) => {
+    // eslint-disable-next-line no-shadow
     const btn = document.createElement('div');
     btn.className = 'btn';
     wrapperKeyboard.append(btn);
@@ -122,6 +124,7 @@ getIdForBtn();
 
 function getEffectPressKeyboard() {
   document.addEventListener('keydown', (event) => {
+    // eslint-disable-next-line no-restricted-syntax
     for (const btn of btns) {
       if (btn.id === event.code) {
         btn.classList.add('btn-active');
@@ -133,6 +136,7 @@ getEffectPressKeyboard();
 
 function deleteEffectPressKeyboard() {
   document.addEventListener('keyup', (event) => {
+    // eslint-disable-next-line no-restricted-syntax
     for (const btn of btns) {
       if (btn.id === event.code) {
         btn.classList.remove('btn-active');
@@ -144,6 +148,9 @@ deleteEffectPressKeyboard();
 
 const btnUnshift = document.querySelectorAll('.unshift');
 const btnShift = document.querySelectorAll('.shift');
+// eslint-disable-next-line no-unused-vars
+const btnCapslock = document.querySelector('#CapsLock');
+
 function getPressShift() {
   document.addEventListener('keydown', (event) => {
     if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
@@ -171,3 +178,49 @@ function deletePressShift() {
   });
 }
 deletePressShift();
+
+function getPressCapslock() {
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'CapsLock') {
+      btnShift.forEach((element) => {
+        element.classList.toggle('btnCaplock');
+      });
+      btnShift.forEach((element) => {
+        if (element.classList.contains('btnCaplock')) {
+          // eslint-disable-next-line no-shadow
+          btnUnshift.forEach((element) => {
+            element.style.display = 'none';
+          });
+        } else {
+          // eslint-disable-next-line no-shadow
+          btnUnshift.forEach((element) => {
+            element.style.display = 'flex';
+          });
+        }
+      });
+    }
+  });
+}
+getPressCapslock();
+/* --not working
+
+const textareaField = document.getElementsByTagName('textarea');
+function changeTextareaValue() {
+  document.addEventListener('keydown', (event) => {
+    //console.log(textareaField.value)
+    //console.log (event)
+    btns.forEach(element => {
+      if (element.id === event.code) {
+        //console.log(element.childNodes)
+        for (let item of element.childNodes) {
+          //console.log(item.childNodes)
+          if (item.classList.contains('ruDiv')) {
+           textareaField.innerHTMLg = item.childNodes[0];
+          }
+        }
+      }
+    });
+  })
+}
+changeTextareaValue()
+*/

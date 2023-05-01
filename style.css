@@ -34,6 +34,9 @@ body {
 .shift {
     display: none;
 }
+.unShift {
+    display: flex;
+}
 .ruDiv {
     display: none;
 }
@@ -58,4 +61,10 @@ body {
     background-color: #ffffff;
     color: #495057;
     transition: 0.5s;
+}
+.btnCaplock {
+    display: flex;
+}
+.not-btnCaplock {
+    display: none;
 }
