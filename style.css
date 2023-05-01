@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Bruno Ace SC', cursive;
+}
+.wrapper-keyboard {
+    margin-top: 10px;
+    background-color: black;
+    display: flex;
+    max-width: 704px;
+    flex-wrap: wrap;
+    height: auto;
+    border-radius: 10px;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    padding: 4px 7px;
+    color: #ffffff;
+    background-color: #495057;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 rgba(73, 80, 87, 0.8), inset -1px -1px 1px #131313;
+}
+.en-shift {
+    display: none;
+}
+.ruDiv {
+    display: none;
+}
+#backspace,
+#capsLock,
+#shiftLeft {
+    width: 100px;
+}
+#tab,
+#del {
+    width: 70px;
+}
+#enter,
+#shiftRight {
+    width: 86px;
+}
+#whitespace {
+    width: 330px;
+}
