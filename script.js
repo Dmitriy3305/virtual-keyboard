@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-plusplus */
 const keyboardKeys = {
   Backquote: { ru: ['ё', 'Ё'], en: ['`', '~'] },
   Digit1: { ru: ['1', '!'], en: ['1', '!'] },
@@ -14,8 +12,8 @@ const keyboardKeys = {
   Digit0: { ru: ['0', ')'], en: ['0', ')'] },
   Minus: { ru: ['-', '_'], en: ['-', '_'] },
   Equal: { ru: ['=', '+'], en: ['=', '+'] },
-  Backspace: { ru: ['Backspace'], en: ['Backspace'] },
-  Tab: { ru: ['tab'], en: ['tab'] },
+  Backspace: { ru: ['Backspace', 'Backspace'], en: ['Backspace', 'Backspace'] },
+  Tab: { ru: ['tab', 'tab'], en: ['tab', 'tab'] },
   KeyQ: { ru: ['й', 'Й'], en: ['q', 'Q'] },
   KeyW: { ru: ['ц', 'Ц'], en: ['w', 'W'] },
   KeyE: { ru: ['у', 'У'], en: ['e', 'E'] },
@@ -28,8 +26,8 @@ const keyboardKeys = {
   BracketLeft: { ru: ['х', 'Х'], en: ['[', '{'] },
   BracketRight: { ru: ['ъ', 'Ъ'], en: [']', '}'] },
   Backslash: { ru: ['\\', '/'], en: ['\\', '|'] },
-  Delete: { ru: ['Del'], en: ['Del'] },
-  CapsLock: { ru: ['CapsLock'], en: ['CapsLock'] },
+  Delete: { ru: ['Del', 'Del'], en: ['Del', 'Del'] },
+  CapsLock: { ru: ['CapsLock', 'CapsLock'], en: ['CapsLock', 'CapsLock'] },
   KeyA: { ru: ['ф', 'Ф'], en: ['a', 'A'] },
   KeyS: { ru: ['ы', 'Ы'], en: ['s', 'S'] },
   KeyD: { ru: ['в', 'В'], en: ['d', 'D'] },
@@ -41,8 +39,8 @@ const keyboardKeys = {
   KeyL: { ru: ['д', 'Д'], en: ['l', 'L'] },
   Semicolon: { ru: ['ж', 'Ж'], en: [';', ':'] },
   Quote: { ru: ['э', 'Э'], en: ["''", '"'] },
-  Enter: { ru: ['Enter'], en: ['Enter'] },
-  ShiftLeft: { ru: ['Shift'], en: ['Shift'] },
+  Enter: { ru: ['Enter', 'Enter'], en: ['Enter', 'Enter'] },
+  ShiftLeft: { ru: ['Shift', 'Shift'], en: ['Shift', 'Shift'] },
   KeyZ: { ru: ['я', 'Я'], en: ['z', 'Z'] },
   KeyX: { ru: ['ч', 'Ч'], en: ['x', 'X'] },
   KeyC: { ru: ['с', 'С'], en: ['c', 'C'] },
@@ -53,17 +51,17 @@ const keyboardKeys = {
   Comma: { ru: ['ю', 'Ю'], en: [',', '<'] },
   Period: { ru: ['ю', 'Ю'], en: ['.', '>'] },
   Slash: { ru: ['.', ','], en: ['/', '?'] },
-  ArrowUp: { ru: ['▲'], en: ['▲'] },
-  ShiftRight: { ru: ['Shift'], en: ['Shift'] },
-  ControlLeft: { ru: ['Ctrl'], en: ['Ctrl'] },
-  MetaLeft: { ru: ['Win'], en: ['Win'] },
-  AltLeft: { ru: ['Alt'], en: ['Alt'] },
-  Space: { ru: [' '], en: [' '] },
-  AltRight: { ru: ['Alt'], en: ['Alt'] },
-  ArrowLeft: { ru: ['◄'], en: ['◄'] },
-  ArrowDown: { ru: ['▼'], en: ['▼'] },
-  ArrowRight: { ru: ['►'], en: ['►'] },
-  ControlRight: { ru: ['Ctrl'], en: ['Ctrl'] },
+  ArrowUp: { ru: ['▲', '▲'], en: ['▲', '▲'] },
+  ShiftRight: { ru: ['Shift', 'Shift'], en: ['Shift', 'Shift'] },
+  ControlLeft: { ru: ['Ctrl', 'Ctrl'], en: ['Ctrl', 'Ctrl'] },
+  MetaLeft: { ru: ['Win', 'Win'], en: ['Win', 'Win'] },
+  AltLeft: { ru: ['Alt', 'Alt'], en: ['Alt', 'Alt'] },
+  Space: { ru: [' ', ' '], en: [' ', ' '] },
+  AltRight: { ru: ['Alt', 'Alt'], en: ['Alt', 'Alt'] },
+  ArrowLeft: { ru: ['◄', '◄'], en: ['◄', '◄'] },
+  ArrowDown: { ru: ['▼', '▼'], en: ['▼', '▼'] },
+  ArrowRight: { ru: ['►', '►'], en: ['►', '►'] },
+  ControlRight: { ru: ['Ctrl', 'Ctrl'], en: ['Ctrl', 'Ctrl'] },
 };
 
 function getKeyboard() {
@@ -79,11 +77,11 @@ function getKeyboard() {
     enBtn.className = 'enDiv';
     btn.append(enBtn);
     const enBtnUnShift = document.createElement('span');
-    enBtnUnShift.className = 'en-unshift';
+    enBtnUnShift.className = 'unshift';
     enBtnUnShift.innerHTML = `${element.en[0]}`;
     enBtn.append(enBtnUnShift);
     const enBtnShift = document.createElement('span');
-    enBtnShift.className = 'en-shift';
+    enBtnShift.className = 'shift';
     enBtnShift.innerHTML = `${element.en[1]}`;
     enBtn.append(enBtnShift);
     // create RU-BTN
@@ -91,11 +89,11 @@ function getKeyboard() {
     ruBtn.className = 'ruDiv';
     btn.append(ruBtn);
     const ruBtnUnShift = document.createElement('span');
-    ruBtnUnShift.className = 'ru-unshift';
+    ruBtnUnShift.className = 'unshift';
     ruBtnUnShift.innerHTML = `${element.ru[0]}`;
     ruBtn.append(ruBtnUnShift);
     const ruBtnShift = document.createElement('span');
-    ruBtnShift.className = 'ru-shift';
+    ruBtnShift.className = 'shift';
     ruBtnShift.innerHTML = `${element.ru[1]}`;
     ruBtn.append(ruBtnShift);
   });
@@ -114,13 +112,62 @@ function getPage() {
 }
 getPage();
 
+const btns = document.querySelectorAll('.btn');
 function getIdForBtn() {
-  const btn = document.querySelectorAll('.btn');
   for (let i = 0; i < Object.keys(keyboardKeys).length; i++) {
-    btn[i].id = Object.keys(keyboardKeys)[i];
+    btns[i].id = Object.keys(keyboardKeys)[i];
   }
 }
 getIdForBtn();
-document.addEventListener('keydown', (event) => {
-  console.log(event.code);
-});
+
+function getEffectPressKeyboard() {
+  document.addEventListener('keydown', (event) => {
+    for (const btn of btns) {
+      if (btn.id === event.code) {
+        btn.classList.add('btn-active');
+      }
+    }
+  });
+}
+getEffectPressKeyboard();
+
+function deleteEffectPressKeyboard() {
+  document.addEventListener('keyup', (event) => {
+    for (const btn of btns) {
+      if (btn.id === event.code) {
+        btn.classList.remove('btn-active');
+      }
+    }
+  });
+}
+deleteEffectPressKeyboard();
+
+const btnUnshift = document.querySelectorAll('.unshift');
+const btnShift = document.querySelectorAll('.shift');
+function getPressShift() {
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+      btnUnshift.forEach((element) => {
+        element.style.display = 'none';
+      });
+      btnShift.forEach((element) => {
+        element.style.display = 'flex';
+      });
+    }
+  });
+}
+getPressShift();
+
+function deletePressShift() {
+  document.addEventListener('keyup', (event) => {
+    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+      btnUnshift.forEach((element) => {
+        element.style.display = 'flex';
+      });
+      btnShift.forEach((element) => {
+        element.style.display = 'none';
+      });
+    }
+  });
+}
+deletePressShift();
