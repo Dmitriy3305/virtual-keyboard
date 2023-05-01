@@ -37,19 +37,19 @@ body {
 .ruDiv {
     display: none;
 }
-#backspace,
-#capsLock,
-#shiftLeft {
+#Backspace,
+#CapsLock,
+#ShiftLeft {
     width: 100px;
 }
-#tab,
-#del {
+#Tab,
+#Delete {
     width: 70px;
 }
-#enter,
-#shiftRight {
+#Enter,
+#ShiftRight {
     width: 86px;
 }
-#whitespace {
+#Space {
     width: 330px;
 }
